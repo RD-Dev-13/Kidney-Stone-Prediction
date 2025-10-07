@@ -28,8 +28,8 @@ def run_command(command, description):
 def check_model_exists():
     """Check if trained model exists"""
     model_files = [
-        "best_kidney_stone_model_efficientnet.h5",
-        "best_kidney_stone_model_resnet50.h5"
+        "final_efficientnet_model.h5",
+        "final_resnet50_model.h5"
     ]
     return any(os.path.exists(f) for f in model_files)
 
@@ -45,17 +45,17 @@ def main():
     
     # Menu
     print("\nSelect an option:")
-    print("1. 🎯 Train Models (EfficientNetB0 & ResNet50)")
+    print("1. 🧠 Train AI Models (Enhanced)")
     print("2. 🚀 Start Backend Server")
-    print("3. 🖥️  Launch Streamlit GUI")
-    print("4. 🔄 Complete Workflow (Train → Backend → GUI)")
-    print("5. 📊 Quick Demo (Backend → GUI)")
+    print("3. 🖥️  Launch React Frontend")
+    print("4. 🔄 Complete Workflow (Train → Backend → Frontend)")
+    print("5. 📊 Quick Demo (Backend → Frontend)")
     
     choice = input("\nEnter your choice (1-5): ").strip()
     
     if choice == "1":
-        # Train models
-        if not run_command("python train_model.py", "Training AI Models"):
+        # Enhanced training
+        if not run_command("python enhanced_train_model.py", "Training AI Models (Enhanced)"):
             return
             
     elif choice == "2":
@@ -64,37 +64,37 @@ def main():
             print("❌ No trained model found! Please train models first (option 1).")
             return
         
-        print("🚀 Starting FastAPI backend server...")
+        print("🚀 Starting Enhanced Ensemble backend server...")
         print("Backend will be available at: http://localhost:8000")
         print("Press Ctrl+C to stop the server")
         
         try:
-            subprocess.run("python backend.py", shell=True)
+            subprocess.run("python ensemble_backend.py", shell=True)
         except KeyboardInterrupt:
             print("\n🛑 Backend server stopped.")
             
     elif choice == "3":
         # Launch GUI
-        print("🖥️ Launching Streamlit GUI...")
-        print("GUI will open in your browser at: http://localhost:8501")
-        print("Press Ctrl+C to stop the GUI")
+        print("🖥️ Launching React Frontend...")
+        print("Frontend will open in your browser at: http://localhost:5173")
+        print("Press Ctrl+C to stop the frontend")
         
         try:
-            subprocess.run("streamlit run streamlit_app.py", shell=True)
+            subprocess.run("cd react-frontend && npm run dev", shell=True)
         except KeyboardInterrupt:
-            print("\n🛑 Streamlit GUI stopped.")
+            print("\n🛑 React Frontend stopped.")
             
     elif choice == "4":
         # Complete workflow
         print("🔄 Starting complete workflow...")
         
-        # Step 1: Train models
-        if not run_command("python train_model.py", "Training AI Models"):
+        # Step 1: Enhanced training
+        if not run_command("python enhanced_train_model.py", "Training AI Models (Enhanced)"):
             return
         
         print("\n✅ Training completed! Now you can:")
-        print("1. Run 'python backend.py' in one terminal")
-        print("2. Run 'streamlit run streamlit_app.py' in another terminal")
+        print("1. Run 'python ensemble_backend.py' in one terminal")
+        print("2. Run 'cd react-frontend && npm run dev' in another terminal")
         print("\nOr use option 5 for quick demo setup.")
         
     elif choice == "5":
@@ -108,7 +108,7 @@ def main():
         
         # Start backend in background
         backend_process = subprocess.Popen(
-            ["python", "backend.py"],
+            ["python", "ensemble_backend.py"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
@@ -116,11 +116,11 @@ def main():
         # Wait for backend to start
         time.sleep(3)
         
-        print("🖥️ Launching Streamlit GUI...")
+        print("🖥️ Launching React Frontend...")
         print("Demo will open in your browser!")
         
         try:
-            subprocess.run("streamlit run streamlit_app.py", shell=True)
+            subprocess.run("cd react-frontend && npm run dev", shell=True)
         except KeyboardInterrupt:
             print("\n🛑 Stopping demo...")
         finally:

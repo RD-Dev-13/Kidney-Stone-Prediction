@@ -199,7 +199,7 @@ const Upload = () => {
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-2xl font-bold text-text-primary dark:text-white">
-            {percentage}%
+            {parseFloat(percentage).toFixed(2)}%
           </span>
         </div>
       </div>

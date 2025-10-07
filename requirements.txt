@@ -1,7 +1,6 @@
 tensorflow
 fastapi
 uvicorn
-streamlit
 opencv-python
 pillow
 numpy
