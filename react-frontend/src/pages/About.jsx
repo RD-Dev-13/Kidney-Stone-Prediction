@@ -181,58 +181,6 @@ const About = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.1 }}
-        className="card"
-      >
-        <h2 className="text-2xl font-bold text-text-primary dark:text-white mb-6">
-          Development Team
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-primary to-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
-              H
-            </div>
-            <h4 className="font-semibold text-text-primary dark:text-white mb-1">Harsha</h4>
-            <p className="text-sm text-text-secondary dark:text-gray-400 font-mono">
-              RA2311003011880
-            </p>
-          </div>
-          
-          <div className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-secondary to-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
-              S
-            </div>
-            <h4 className="font-semibold text-text-primary dark:text-white mb-1">Subhajit</h4>
-            <p className="text-sm text-text-secondary dark:text-gray-400 font-mono">
-              RA2311003011881
-            </p>
-          </div>
-          
-          <div className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-warning to-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
-              J
-            </div>
-            <h4 className="font-semibold text-text-primary dark:text-white mb-1">Jeet</h4>
-            <p className="text-sm text-text-secondary dark:text-gray-400 font-mono">
-              RA2311003011882
-            </p>
-          </div>
-          
-          <div className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
-              D
-            </div>
-            <h4 className="font-semibold text-text-primary dark:text-white mb-1">Deepjoy</h4>
-            <p className="text-sm text-text-secondary dark:text-gray-400 font-mono">
-              RA2311003011885
-            </p>
-          </div>
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.3 }}
         className="card"
       >
