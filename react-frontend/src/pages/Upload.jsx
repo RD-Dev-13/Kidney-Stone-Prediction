@@ -37,12 +37,15 @@ const Upload = () => {
     setAnalyzing(true)
     
     try {
-      const formData = new FormData()
-      formData.append('file', uploadedImage.file)
-      
-      const response = await fetch('https://nubruuuu-kidney-stone-backend.hf.space/predict', {
+      // Convert image to base64 for Gradio API
+      const base64Image = uploadedImage.preview.split(',')[1]
+
+      const response = await fetch('https://nubruuuu-kidney-stone-backend.hf.space/api/predict', {
         method: 'POST',
-        body: formData
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          data: [{ data: base64Image, mime_type: uploadedImage.file.type }]
+        })
       })
       
       if (!response.ok) {
@@ -50,9 +53,13 @@ const Upload = () => {
       }
       
       const data = await response.json()
+      // Gradio returns results in data[0], data[1], etc.
+      const prediction = data.data[0]
+      const confidence = data.data[1]
+
       setResult({
-        prediction: data.prediction,
-        confidence: data.confidence,
+        prediction,
+        confidence,
         heatmap: uploadedImage.preview
       })
     } catch (error) {
