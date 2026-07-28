@@ -37,25 +37,19 @@ const Upload = () => {
     setAnalyzing(true)
     
     try {
-      // Convert image to base64 for Gradio API
-      const base64Image = uploadedImage.preview.split(',')[1]
+      const { Client } = await import('@gradio/client')
+      const client = await Client.connect("nubruuuu/kidney-stone-backend")
+      
+      // Get the image blob from the preview URL (which is a blob/data URL)
+      const response = await fetch(uploadedImage.preview)
+      const imageBlob = await response.blob()
 
-      const response = await fetch('https://nubruuuu-kidney-stone-backend.hf.space/api/predict', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          data: [{ data: base64Image, mime_type: uploadedImage.file.type }]
-        })
+      const result = await client.predict("/predict", { 
+        image: imageBlob
       })
       
-      if (!response.ok) {
-        throw new Error('Analysis failed')
-      }
-      
-      const data = await response.json()
-      // Gradio returns results in data[0], data[1], etc.
-      const prediction = data.data[0]
-      const confidence = data.data[1]
+      const prediction = result.data[0]
+      const confidence = result.data[1]
 
       setResult({
         prediction,
