@@ -3,7 +3,7 @@
 An end-to-end AI application that detects kidney stones from ultrasound and CT scans using deep learning models (EfficientNet and ResNet50). The project is built with a modern, decoupled architecture featuring a React frontend and a Python/FastAPI/Gradio backend.
 
 ## 🌟 Live Demos
-- **Frontend (Vercel):** [Replace with Vercel Link if available]
+- **Frontend (Vercel):** (https://kidney-stone-ai.vercel.app/)
 - **Backend API (Hugging Face ZeroGPU):** [https://huggingface.co/spaces/nubruuuu/kidney-stone-backend](https://huggingface.co/spaces/nubruuuu/kidney-stone-backend)
 
 ## 📁 Repository Structure
