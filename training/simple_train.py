@@ -115,7 +115,7 @@ class SimpleKidneyStoneDetector:
         return True
 
 def main():
-    detector = SimpleKidneyStoneDetector('Kidney Ultrasound Images Stone and No Stone')
+    detector = SimpleKidneyStoneDetector('../dataset')
     
     print("Starting simple CNN training...")
     detector.train_models()
