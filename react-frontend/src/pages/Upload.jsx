@@ -36,62 +36,31 @@ const Upload = () => {
   const analyzeImage = async () => {
     setAnalyzing(true)
     
-    // Simulate API call with consistent results based on image
-    setTimeout(() => {
-      // Create consistent hash from image name for reproducible results
-      const imageHash = uploadedImage.name.split('').reduce((a, b) => {
-        a = ((a << 5) - a) + b.charCodeAt(0)
-        return a & a
-      }, 0)
+    try {
+      const formData = new FormData()
+      formData.append('file', uploadedImage.file)
       
-      // Advanced AI simulation - analyze image characteristics
-      const fileName = uploadedImage.name.toLowerCase()
-      const fileSize = uploadedImage.file.size
+      const response = await fetch('https://nubruuuu-kidney-stone-backend.hf.space/predict', {
+        method: 'POST',
+        body: formData
+      })
       
-      // Simulate image analysis based on multiple factors
-      let prediction
-      let confidence
-      
-      // Check for obvious keywords first
-      if (fileName.includes('stone') || fileName.includes('kidney_stone') || fileName.includes('calculi')) {
-        prediction = 'Stone'
-        confidence = 85 + (Math.abs(imageHash) % 10) // 85-94%
-      } else if (fileName.includes('normal') || fileName.includes('healthy') || fileName.includes('clear')) {
-        prediction = 'Normal'
-        confidence = 80 + (Math.abs(imageHash) % 15) // 80-94%
-      } else {
-        // Advanced simulation based on file characteristics
-        const sizeScore = (fileSize / 1024 / 1024) * 10 // File size factor
-        const nameScore = fileName.length * 3 // Filename complexity
-        const hashScore = Math.abs(imageHash) % 100
-        
-        const totalScore = (sizeScore + nameScore + hashScore) % 100
-        
-        // More sophisticated prediction logic
-        if (totalScore > 65) {
-          prediction = 'Stone'
-          confidence = 70 + (totalScore % 25) // 70-94%
-        } else if (totalScore < 35) {
-          prediction = 'Normal'
-          confidence = 75 + (totalScore % 20) // 75-94%
-        } else {
-          // Borderline cases - use additional factors
-          const timeScore = new Date().getSeconds() % 10
-          prediction = (totalScore + timeScore) % 2 === 0 ? 'Stone' : 'Normal'
-          confidence = 65 + (totalScore % 30) // 65-94%
-        }
+      if (!response.ok) {
+        throw new Error('Analysis failed')
       }
       
-      const mockResult = {
-        prediction: prediction,
-        confidence: Math.min(confidence, 94), // Cap at 94%
-        heatmap: uploadedImage.preview // Mock heatmap
-      }
-      setResult(mockResult)
+      const data = await response.json()
+      setResult({
+        prediction: data.prediction,
+        confidence: data.confidence,
+        heatmap: uploadedImage.preview
+      })
+    } catch (error) {
+      console.error('Error analyzing image:', error)
+      alert('Error analyzing image. Please try again.')
+    } finally {
       setAnalyzing(false)
-      
-
-    }, 3000)
+    }
   }
 
   const downloadReport = () => {
@@ -355,7 +324,7 @@ const Upload = () => {
                     const img_bytes = new FormData()
                     img_bytes.append('file', uploadedImage.file)
                     
-                    fetch('http://127.0.0.1:8000/explain', {
+                    fetch('https://nubruuuu-kidney-stone-backend.hf.space/explain', {
                       method: 'POST',
                       body: img_bytes
                     })
