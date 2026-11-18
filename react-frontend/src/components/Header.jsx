@@ -17,18 +17,19 @@ const Header = ({ darkMode, setDarkMode }) => {
         <div className="flex items-center gap-4">
 
 
-          <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-            <Settings size={20} className="text-text-secondary dark:text-gray-400" />
+          <button className="p-2.5 rounded-xl bg-gray-50 dark:bg-gray-700/60 hover:bg-gray-100 dark:hover:bg-gray-700 text-text-secondary dark:text-gray-300 shadow-[0_2px_0_#e2e8f0] dark:shadow-[0_2px_0_#374151] active:translate-y-0.5 active:shadow-none transition-all duration-150 cursor-pointer group">
+            <Settings size={20} className="group-hover:rotate-90 transition-transform duration-300" />
           </button>
 
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            className="p-2.5 rounded-xl bg-gray-50 dark:bg-gray-700/60 hover:bg-gray-100 dark:hover:bg-gray-700 shadow-[0_2px_0_#e2e8f0] dark:shadow-[0_2px_0_#374151] active:translate-y-0.5 active:shadow-none transition-all duration-150 cursor-pointer"
+            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
           >
             {darkMode ? (
-              <Sun size={20} className="text-yellow-500" />
+              <Sun size={20} className="text-yellow-500 hover:rotate-45 transition-transform duration-300" />
             ) : (
-              <Moon size={20} className="text-text-secondary" />
+              <Moon size={20} className="text-text-secondary hover:-rotate-12 transition-transform duration-300" />
             )}
           </button>
 

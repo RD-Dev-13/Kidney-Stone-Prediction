@@ -6,29 +6,149 @@
   * {
     @apply border-border-color;
   }
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
   html, body, #root {
-    @apply bg-background dark:bg-gray-900 text-text-primary dark:text-white font-sans min-h-screen;
+    @apply bg-slate-50 dark:bg-slate-950 text-text-primary dark:text-slate-100 font-sans min-h-screen antialiased;
+    overflow-x: hidden;
   }
 }
 
 @layer components {
+  /* Tactile 3D Primary Button with Mechanical Spring Animation */
   .btn-primary {
-    @apply bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+    @apply bg-primary text-white px-6 py-3 rounded-xl font-semibold inline-flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed select-none;
+    box-shadow: 0 4px 0 #1565C0, 0 8px 16px -2px rgba(30, 136, 229, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
+  .btn-primary:hover:not(:disabled) {
+    background-color: #1976D2;
+    transform: translateY(-1.5px);
+    box-shadow: 0 5px 0 #1565C0, 0 12px 20px -2px rgba(30, 136, 229, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #1565C0, 0 3px 6px rgba(30, 136, 229, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  
+  /* Tactile 3D Secondary Button with Smooth Press Animation */
   .btn-secondary {
-    @apply bg-surface dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-text-primary dark:text-white px-6 py-3 rounded-xl font-semibold border border-border-color dark:border-gray-600 transition-all duration-200;
+    @apply bg-surface dark:bg-slate-800 text-text-primary dark:text-slate-100 px-6 py-3 rounded-xl font-semibold border border-border-color dark:border-slate-700 inline-flex items-center justify-center gap-2 cursor-pointer select-none;
+    box-shadow: 0 3px 0 #CBD5E1, 0 6px 12px -2px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dark .btn-secondary {
+    box-shadow: 0 3px 0 #334155, 0 6px 14px -2px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .btn-secondary:hover {
+    background-color: #F8FAFC;
+    transform: translateY(-1.5px);
+    box-shadow: 0 4px 0 #CBD5E1, 0 8px 16px -2px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  .dark .btn-secondary:hover {
+    background-color: #1E293B;
+    box-shadow: 0 4px 0 #334155, 0 8px 18px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .btn-secondary:active {
+    transform: translateY(1.5px);
+    box-shadow: 0 1px 0 #CBD5E1, 0 2px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  .dark .btn-secondary:active {
+    box-shadow: 0 1px 0 #334155, 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
+  /* Precision 3D Elevated Card */
   .card {
-    @apply bg-surface dark:bg-gray-800 rounded-2xl shadow-lg border border-border-color dark:border-gray-700 p-6 transition-all duration-300 hover:shadow-xl;
+    @apply bg-surface dark:bg-slate-900 rounded-2xl border border-border-color dark:border-slate-800 p-6;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 6px 16px -2px rgba(15, 23, 42, 0.06), 0 16px 32px -4px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dark .card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 8px 16px -2px rgba(0, 0, 0, 0.6), 0 20px 40px -6px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 12px 24px -4px rgba(15, 23, 42, 0.1), 0 24px 48px -6px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1);
+  }
+
+  .dark .card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6), 0 14px 28px -4px rgba(0, 0, 0, 0.7), 0 28px 56px -6px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.14);
   }
   
+  /* Sidebar Item with Smooth Hover Animation */
   .sidebar-item {
-    @apply flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800 text-text-primary dark:text-white;
+    @apply flex items-center text-text-primary dark:text-slate-300 font-medium cursor-pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sidebar-item:hover {
+    @apply bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white;
   }
   
   .sidebar-item.active {
-    @apply bg-primary text-white hover:bg-blue-600;
+    @apply bg-primary text-white font-semibold;
+    box-shadow: 0 4px 12px rgba(30, 136, 229, 0.35);
+  }
+
+  .sidebar-item.active:hover {
+    background-color: #1976D2;
+  }
+}
+
+/* 3D Depth on Dropzone Area */
+[class*="border-dashed"] {
+  box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.04);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[class*="border-dashed"]:hover {
+  transform: scale(1.008);
+}
+
+/* 3D Depth on Circular Progress Gauge */
+svg.transform.-rotate-90 {
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.12));
+}
+
+.dark svg.transform.-rotate-90 {
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.55));
+}
+
+/* Result Alert Box Elevation */
+div[class*="bg-danger/10"], div[class*="bg-secondary/10"] {
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Subtle Modern Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700 rounded-full hover:bg-slate-400 dark:hover:bg-slate-600;
+}
+
+/* Responsive Polish across Screen Sizes */
+@media (max-width: 768px) {
+  .card {
+    padding: 1.25rem;
+  }
+  .btn-primary, .btn-secondary {
+    padding: 0.625rem 1.125rem;
+    font-size: 0.875rem;
   }
 }
